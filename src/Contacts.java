@@ -1,4 +1,4 @@
-import java.io.*;
+﻿import java.io.*;
 import java.util.*;
 
 /**
@@ -6,9 +6,9 @@ import java.util.*;
  */
 public class Contacts {
     static Vector<Contacts_Info> con_vector;
-    public static final String Contacts = "\\Contacts.txt";
+    public static final String Contacts = "c:\\JavaProject\\Test\\src\\Contacts.txt";
     static int choice;
-
+    static Scanner scanner = new Scanner(System.in);
     public static void main(String[] argc) {
 
         con_vector = new Vector<Contacts_Info>();
@@ -29,6 +29,7 @@ public class Contacts {
                     Contact_delete();
                     break;
                 case 5:
+                	scanner.close();
                     break;
                 default:
                     System.out.println("잘못된 입력 값 입니다.");
@@ -43,17 +44,20 @@ public class Contacts {
             String line = "";
             con_vector.clear();
             while((line = bufferedReader.readLine())!=null){
-                int loc1 = line.charAt('%');
-                int loc2 = line.substring(loc1,line.length()).charAt('%');
-                Contacts_Info tmp = new Contacts_Info(line.substring(loc1-1),line.substring(loc1+1,loc2-1),line.substring(loc2,line.length()));
+                int loc1 = line.indexOf('%');
+                int loc2 = line.substring(loc1+1,line.length()).indexOf('%')+loc1+1;
+              //  System.out.println(line.substring(0,loc1)+" "+line.substring(loc1+1,loc2)+" "+line.substring(loc2+1,line.length()));
+                Contacts_Info tmp = new Contacts_Info(line.substring(0,loc1),line.substring(loc1+1,loc2),line.substring(loc2+1,line.length()));
                 con_vector.add(tmp);
+                //System.out.println(con_vector.elementAt(0).name+" "+con_vector.elementAt(0).phone+" "+con_vector.elementAt(0).email);
             }
+
             fileReader.close();
             bufferedReader.close();
         }catch(FileNotFoundException e){System.out.println("ERROR1");}catch(IOException e){System.out.println("ERROR2");}
         //전체 리스트 읽음
 
-        Scanner scanner = new Scanner(System.in);
+       // Scanner scanner = new Scanner(System.in);
         System.out.println("<<연락처 관리 메뉴>>");
         System.out.println("1. CREATE");
         System.out.println("2. VIEW");
@@ -63,21 +67,22 @@ public class Contacts {
         System.out.print("입력: ");
         String tmp = scanner.nextLine();
         choice = Integer.parseInt(tmp);
-        scanner.close();
+      //  scanner.close();
     }
     private static void Contact_delete() {
 
         Contact_print();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("삭제할 연락처의 번호를 입력하세요: ");
+       // Scanner scanner = new Scanner(System.in);
+        System.out.print("삭제할 연락처의 번호를 입력하세요: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("=================================");
-        System.out.println(String.format("%3s","번호")+String.format("%10s","이름")+String.format("%10s","핸드폰번호")+String.format("%10s","이메일"));
-        System.out.println("=================================");
-        System.out.println(String.format("%3s","["+choice+"]")+String.format("%10s",con_vector.elementAt(choice-1).name)+String.format("%10s",con_vector.elementAt(choice-1).phone)+String.format("%10s",con_vector.elementAt(choice-1).email));
-        System.out.println("정말로 삭제하시겠습니까?(y/n): ");
-        String delete_choice = scanner.next();
+        System.out.println("====================================================");
+        System.out.println(String.format("%3s","번호")+String.format("%10s","이름")+String.format("%20s","핸드폰번호")+String.format("%27s","이메일"));
+        System.out.println("====================================================");
+        System.out.println(String.format("%3s","["+choice+"]")+String.format("%6s",con_vector.elementAt(choice-1).name)+String.format("%20s",con_vector.elementAt(choice-1).phone)+String.format("%27s",con_vector.elementAt(choice-1).email));
+
+        System.out.print("정말로 삭제하시겠습니까?(y/n): ");
+        String delete_choice = scanner.nextLine();
         if(delete_choice.equals("y")) {
             con_vector.remove(choice-1);
             System.out.println("성공적으로 삭제되었습니다");
@@ -88,13 +93,15 @@ public class Contacts {
         else {
             System.out.println("잘못된 입력값 입니다.");
         }
+        Contact_write();
+       // scanner.close();
 
     }
 
     private static void Contact_create(){
-
+    		
             Contacts_Info tmp = new Contacts_Info("","","");
-            Scanner scanner = new Scanner(System.in);
+            //Scanner scanner = new Scanner(System.in);
             System.out.println("세부 데이터를 입력하세요( name, phone-number, email)");
             System.out.print("이름: ");
             tmp.name = scanner.nextLine();
@@ -102,9 +109,11 @@ public class Contacts {
             tmp.phone = scanner.nextLine();
             System.out.print("이메일: ");
             tmp.email = scanner.nextLine();
+            
             //추가할 연락처를 입력받는다
             con_vector.add(tmp);
-            scanner.close();
+            
+            //scanner.close();
 
             Contact_write();
         System.out.println("성공적으로 생성되었습니다.");
@@ -114,31 +123,33 @@ public class Contacts {
 
         Contact_print();
 
-        Scanner scanner = new Scanner(System.in);
+        //Scanner scanner = new Scanner(System.in);
         System.out.print("자세히 보고 싶은 연락처의 번호를 입력해주세요: ");
         int tmp = Integer.parseInt(scanner.nextLine()); //사용자의 선택
-        System.out.println("=================================");
-        System.out.println(String.format("%3s","번호")+String.format("%10s","이름")+String.format("%10s","핸드폰번호")+String.format("%10s","이메일"));
-        System.out.println("=================================");
-        System.out.println(String.format("%3s","["+tmp+"]")+String.format("%10s",con_vector.elementAt(tmp-1).name)+String.format("%10s",con_vector.elementAt(tmp-1).phone)+String.format("%10s",con_vector.elementAt(tmp-1).email));
+        System.out.println("====================================================");
+        System.out.println(String.format("%3s","번호")+String.format("%10s","이름")+String.format("%20s","핸드폰번호")+String.format("%27s","이메일"));
+        System.out.println("====================================================");
+        System.out.println(String.format("%3s","["+tmp+"]")+String.format("%6s",con_vector.elementAt(tmp-1).name)+String.format("%20s",con_vector.elementAt(tmp-1).phone)+String.format("%27s",con_vector.elementAt(tmp-1).email));
         //선택한 리스트의 자세한 데이터 출력
-        scanner.close();
+       // scanner.close();
     }
 
     private static void Contact_update() {
 
         Contact_print();
 
-        Scanner scanner = new Scanner(System.in);
+       // Scanner scanner = new Scanner(System.in);
         System.out.print("수정할 연락처의 번호를 입력하세요: ");
         int choice = scanner.nextInt(); //사용자의 선택
-        System.out.println("=================================");
-        System.out.println(String.format("%3s","번호")+String.format("%10s","이름")+String.format("%10s","핸드폰번호")+String.format("%10s","이메일"));
-        System.out.println("=================================");
-        System.out.println(String.format("%3s","["+choice+"]")+String.format("%10s",con_vector.elementAt(choice-1).name)+String.format("%10s",con_vector.elementAt(choice-1).phone)+String.format("%10s",con_vector.elementAt(choice-1).email));
-
-        Contacts_Info tmp = new Contacts_Info("","","");
-
+        System.out.println("====================================================");
+        System.out.println(String.format("%3s","번호")+String.format("%10s","이름")+String.format("%20s","핸드폰번호")+String.format("%27s","이메일"));
+        System.out.println("====================================================");
+        System.out.println(String.format("%3s","["+choice+"]")+String.format("%6s",con_vector.elementAt(choice-1).name)+String.format("%20s",con_vector.elementAt(choice-1).phone)+String.format("%27s",con_vector.elementAt(choice-1).email));
+        scanner.nextLine();
+        
+        
+        Contacts_Info tmp = con_vector.elementAt(choice-1);
+        
         System.out.println("수정 할 연락처의 세부 데이터를 입력 해 주세요.");
         System.out.print("이름: ");
         tmp.name = scanner.nextLine();
@@ -146,8 +157,7 @@ public class Contacts {
         tmp.phone = scanner.nextLine();
         System.out.print("이메일: ");
         tmp.email = scanner.nextLine();
-        con_vector.add(tmp);
-        scanner.close();
+      //  scanner.close();
 
         Contact_write();
         System.out.println("성공적으로 수정되었습니다.");
@@ -160,7 +170,8 @@ public class Contacts {
             File file = new File(Contacts);
             FileWriter fileWriter = new FileWriter(file);
             for (int i = 0; i < con_vector.size(); i++) {
-                fileWriter.write(con_vector.elementAt(i).name + "%" + con_vector.elementAt(i).phone + "%" + con_vector.elementAt(i).email + "%");
+                fileWriter.write(con_vector.elementAt(i).name + "%" + con_vector.elementAt(i).phone + "%" + con_vector.elementAt(i).email );
+                fileWriter.write("\r\n", 0, 2);
             }
             fileWriter.close();
         }catch (IOException e){}
@@ -169,6 +180,7 @@ public class Contacts {
         System.out.println("=================================");
         System.out.println(String.format("%3s","번호")+String.format("%10s","이름"));
         System.out.println("=================================");
+       // System.out.println(con_vector.elementAt(1).name);
         for(int i=0;i<con_vector.size();i++){
             System.out.println(String.format("%3s","["+(i+1)+"]")+String.format("%10s",con_vector.elementAt(i).name));
         }

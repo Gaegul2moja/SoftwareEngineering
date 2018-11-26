@@ -58,7 +58,6 @@ public class Appointment {
         }
         catch(FileNotFoundException e){System.out.println("ERROR1");}
         catch(IOException e){System.out.println("ERROR2");}
-        //전체 리스트 읽음
 
         System.out.println("<<약속 관리 메뉴>>");
         System.out.println("1. CREATE");
@@ -115,13 +114,10 @@ public class Appointment {
             System.out.print("사람: ");
             tmp.person = scanner.nextLine();
             
-            //추가할 약속를 입력받는다
-            appt_vector.add(tmp);
-            
-            //scanner.close();
 
+            appt_vector.add(tmp);
             Appointment_write();
-        System.out.println("성공적으로 생성되었습니다.");
+            System.out.println("성공적으로 생성되었습니다.");
     }
 
     private static void Appointment_view(){
@@ -139,7 +135,6 @@ public class Appointment {
         		+String.format("%20s",appt_vector.elementAt(tmp-1).date)
         		+String.format("%27s",appt_vector.elementAt(tmp-1).location)
         		+String.format("%30s", appt_vector.elementAt(tmp-1).person));
-        //선택한 리스트의 자세한 데이터 출력
     }
 
     private static void Appointment_update() {
@@ -148,7 +143,7 @@ public class Appointment {
 
        
         System.out.print("수정할 약속의 번호를 입력하세요: ");
-        int choice = scanner.nextInt(); //사용자의 선택
+        int choice = scanner.nextInt(); 
         System.out.println("====================================================");
         System.out.println(String.format("%3s","번호")+String.format("%10s","제목")+String.format("%20s","날짜")+String.format("%27s","위치")+String.format("%30s", "사람"));
         System.out.println("====================================================");
@@ -198,7 +193,6 @@ public class Appointment {
             System.out.println(String.format("%3s","["+(i+1)+"]")+String.format("%10s",appt_vector.elementAt(i).title)+String.format("%10s",appt_vector.elementAt(i).date));
         }
         System.out.println("=================================");
-        //간략한 전체 리스트 출력
     }
 }
 

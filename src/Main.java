@@ -14,7 +14,7 @@ public class Main {
 				Contacts.main();
 				break;
 			case 2:
-				Todo.main();
+				//Todo.main();
 				break;
 			case 3:
 				Appointment.main();

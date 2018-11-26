@@ -6,7 +6,7 @@ import java.util.*;
  */
 public class Contacts {
     static Vector<Contacts_Info> con_vector;
-    public static final String Contacts = "c:\\JavaProject\\Test\\src\\Contacts.txt";
+    public static final String Contacts = "c:\\JavaProject\\SoftwareEngineering\\src\\Contacts.txt";
     static int choice;
     static Scanner scanner = new Scanner(System.in);
     public static void main() {
@@ -89,7 +89,6 @@ public class Contacts {
         }
         Contact_write();
 
-
     }
 
     private static void Contact_create(){
@@ -105,7 +104,8 @@ public class Contacts {
             
             //추가할 연락처를 입력받는다
             con_vector.add(tmp);
- 
+            
+
             Contact_write();
         System.out.println("성공적으로 생성되었습니다.");
     }
@@ -145,7 +145,6 @@ public class Contacts {
         tmp.phone = scanner.nextLine();
         System.out.print("이메일: ");
         tmp.email = scanner.nextLine();
-      //  scanner.close();
 
         Contact_write();
         System.out.println("성공적으로 수정되었습니다.");

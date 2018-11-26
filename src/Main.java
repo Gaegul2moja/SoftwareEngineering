@@ -14,16 +14,16 @@ public class Main {
 				Contacts.main();
 				break;
 			case 2:
-				Todo.main();
+//				Todo.main();
 				break;
 			case 3:
-				Appointment.main();
+//				Appointment.main();
 				break;
 			case 4:
 				scanner.close();
 				break;
 			default:
-                System.out.println("Àß¸øµÈ ÀÔ·Â °ª ÀÔ´Ï´Ù.");
+                System.out.println("ï¿½ß¸ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½ï¿½ ï¿½Ô´Ï´ï¿½.");
 			
 			}
 		}while(choice!=4);
@@ -31,12 +31,12 @@ public class Main {
 	}
 	
 	public static void Main_menu(){
-		System.out.println("<<¸ÞÀÎ ¸Þ´º>>");
-		System.out.println("1. ¿¬¶ôÃ³ °ü¸®");
-		System.out.println("2. to-do list °ü¸®");
-		System.out.println("3. ¾à¼Ó °ü¸®");
-		System.out.println("4. Á¾·á");
-		System.out.print("ÀÔ·Â: ");
+		System.out.println("<<ï¿½ï¿½ï¿½ï¿½ ï¿½Þ´ï¿½>>");
+		System.out.println("1. ï¿½ï¿½ï¿½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½");
+		System.out.println("2. to-do list ï¿½ï¿½ï¿½ï¿½");
+		System.out.println("3. ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½");
+		System.out.println("4. ï¿½ï¿½ï¿½ï¿½");
+		System.out.print("ï¿½Ô·ï¿½: ");
 		
         String tmp = scanner.nextLine();
         choice = Integer.parseInt(tmp);

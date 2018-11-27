@@ -20,7 +20,7 @@ public class Todo {
     public static final String Todolists = "Todolists.txt";
     static int choice;
     static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
+    public static void main() {
 
         todo_vector = new Vector<Todolists_Info>();
 
@@ -40,7 +40,6 @@ public class Todo {
                     Todolist_delete();
                     break;
                 case 5:
-                	scanner.close();
                     break;
                 default:
                     System.out.println("잘못된 입력 값 입니다.");
@@ -104,7 +103,7 @@ public class Todo {
             System.out.println("잘못된 입력값 입니다.");
         }
         Todolist_write();
-       // scanner.close();
+
     }
 
     private static void Todolist_create(){

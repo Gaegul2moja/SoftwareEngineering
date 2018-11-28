@@ -15,8 +15,8 @@ import java.util.Vector;
  * Created by HOME on 2018-11-07.
  */
 public class Todo {
-	
-	static Vector<Todolists_Info> todo_vector;
+   
+   static Vector<Todolists_Info> todo_vector;
     public static final String Todolists = "Todolists.txt";
     static int choice;
     static Scanner scanner = new Scanner(System.in);
@@ -40,7 +40,6 @@ public class Todo {
                     Todolist_delete();
                     break;
                 case 5:
-                	scanner.close();
                     break;
                 default:
                     System.out.println("잘못된 입력 값 입니다.");
@@ -50,6 +49,9 @@ public class Todo {
     private static void Todolist_menu(){
         try {
             File file = new File(Todolists);
+            if(!file.exists()) {
+               file.createNewFile();
+            }
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line = "";
@@ -58,7 +60,7 @@ public class Todo {
                 int loc1 = line.indexOf('%');
                 int loc2 = line.substring(loc1+1,line.length()).indexOf('%')+loc1+1;
                 int loc3 = line.substring(loc2+1, line.length()).indexOf('%')+loc2+1;
-                Todolists_Info tmp = new Todolists_Info(line.substring(0,loc1),line.substring(loc1+1,loc2),line.substring(loc2+1,loc3),line.substring(loc3, line.length()));
+                Todolists_Info tmp = new Todolists_Info(line.substring(0,loc1),line.substring(loc1+1,loc2),line.substring(loc2+1,loc3),line.substring(loc3+1, line.length()));
                 todo_vector.add(tmp);
                 //System.out.println(con_vector.elementAt(0).name+" "+con_vector.elementAt(0).phone+" "+con_vector.elementAt(0).email);
             }
@@ -104,15 +106,15 @@ public class Todo {
             System.out.println("잘못된 입력값 입니다.");
         }
         Todolist_write();
-       // scanner.close();
+
     }
 
     private static void Todolist_create(){
-    	Calendar cal = Calendar.getInstance();
-    	int year = cal.get(cal.YEAR);
-    	int month = cal.get(cal.MONTH)+1;
-    	int date = cal.get(cal.DATE);
-    	
+       Calendar cal = Calendar.getInstance();
+       int year = cal.get(cal.YEAR);
+       int month = cal.get(cal.MONTH)+1;
+       int date = cal.get(cal.DATE);
+       
         Todolists_Info tmp = new Todolists_Info("","","","");
         System.out.print("제목을 쓰시오: ");
         tmp.title = scanner.nextLine();
@@ -201,11 +203,10 @@ public class Todo {
 class Todolists_Info {
     String  title, createDate, dueDate, description;
     Todolists_Info(String title, String createDate, String dueDate, String description) {
-    	this.title = title;
+       this.title = title;
         this.createDate = createDate;
         this.dueDate = dueDate;
         this.description = description;
     }
-	
+   
 }
-

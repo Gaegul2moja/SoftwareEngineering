@@ -6,7 +6,7 @@ import java.util.*;
  */
 public class Contacts {
     static Vector<Contacts_Info> con_vector;
-    public static final String Contacts = "c:\\JavaProject\\SoftwareEngineering\\src\\Contacts.txt";
+    public static final String Contacts = "Contacts.txt";
     static int choice;
     static Scanner scanner = new Scanner(System.in);
     public static void main() {
@@ -38,6 +38,9 @@ public class Contacts {
     private static void Contact_menu(){
         try {
             File file = new File(Contacts);
+            if(!file.exists()) {
+                file.createNewFile();
+            }
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line = "";

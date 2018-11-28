@@ -20,7 +20,7 @@ public class Todo {
     public static final String Todolists = "Todolists.txt";
     static int choice;
     static Scanner scanner = new Scanner(System.in);
-    public static void main(String[] args) {
+    public static void main() {
 
         todo_vector = new Vector<Todolists_Info>();
 

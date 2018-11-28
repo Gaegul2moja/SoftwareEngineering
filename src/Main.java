@@ -22,7 +22,7 @@ public class Main {
 			case 4:
 				break;
 			default:
-                System.out.println("잘못된 입력 값 입니다.");
+                System.out.println("Wrong input");
 			
 			}
 		}while(choice!=4);
@@ -30,12 +30,12 @@ public class Main {
 	}
 	
 	public static void Main_menu(){
-		System.out.println("<<메인 메뉴>>");
-		System.out.println("1. 연락처 관리");
-		System.out.println("2. to-do list 관리");
-		System.out.println("3. 약속 관리");
-		System.out.println("4. 종료");
-		System.out.print("입력: ");
+		System.out.println("<<Main menu>>");
+		System.out.println("1. Contacts");
+		System.out.println("2. To-do list ");
+		System.out.println("3. Appointment");
+		System.out.println("4. Exit");
+		System.out.print("input: ");
 		
         String tmp = scanner.nextLine();
         choice = Integer.parseInt(tmp);

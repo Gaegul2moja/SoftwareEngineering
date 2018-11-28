@@ -31,7 +31,7 @@ public class Appointment {
                 case 5:
                     break;
                 default:
-                    System.out.println("잘못된 입력 값 입니다.");
+                    System.out.println("Wrong selection");
             }
         }while(choice!=5);
     }
@@ -59,13 +59,13 @@ public class Appointment {
         catch(FileNotFoundException e){System.out.println("ERROR1");}
         catch(IOException e){System.out.println("ERROR2");}
 
-        System.out.println("<<약속 관리 메뉴>>");
+        System.out.println("<<Appointment Management Menu>>");
         System.out.println("1. CREATE");
         System.out.println("2. VIEW");
         System.out.println("3. UPDATE");
         System.out.println("4. DELETE");
         System.out.println("5. EXIT");
-        System.out.print("입력: ");
+        System.out.print("input: ");
         String tmp = scanner.nextLine();
         choice = Integer.parseInt(tmp);
       
@@ -73,11 +73,11 @@ public class Appointment {
     private static void Appointment_delete() {
 
     	Appointment_print();
-        System.out.print("삭제할 약속의 번호를 입력하세요: ");
+        System.out.print("enter the number of list to delete: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         System.out.println("====================================================");
-        System.out.println(String.format("%3s","번호")+String.format("%10s","제목")+String.format("%20s","날짜")+String.format("%27s","위치")+String.format("%30s", "사람"));
+        System.out.println(String.format("%3s","num")+String.format("%10s","title")+String.format("%20s","date")+String.format("%27s","location")+String.format("%30s", "person"));
         System.out.println("====================================================");
         System.out.println(String.format("%3s","["+choice+"]")
         		+String.format("%6s",appt_vector.elementAt(choice-1).title)
@@ -85,17 +85,17 @@ public class Appointment {
         		+String.format("%27s",appt_vector.elementAt(choice-1).location)
         		+String.format("%30s", appt_vector.elementAt(choice-1).person));
 
-        System.out.print("정말로 삭제하시겠습니까?(y/n): ");
+        System.out.print("Are you sure?(y/n): ");
         String delete_choice = scanner.nextLine();
         if(delete_choice.equals("y")) {
             appt_vector.remove(choice-1);
-            System.out.println("성공적으로 삭제되었습니다");
+            System.out.println("Successfully delete");
         }
         else if(delete_choice.equals("n")) {
-            System.out.println("삭제 작업을 취소하였습니다.");
+            System.out.println("Delete operation has been canceled ");
         }
         else {
-            System.out.println("잘못된 입력값 입니다.");
+            System.out.println("Wrong input");
         }
         Appointment_write();
 
@@ -104,20 +104,20 @@ public class Appointment {
     private static void Appointment_create(){
     		
             Appointment_Info tmp = new Appointment_Info("","","","");
-            System.out.println("세부 데이터를 입력하세요( title, date, location,person)");
-            System.out.print("제목: ");
+            System.out.println("Enter the detail data( title, date, location,person)");
+            System.out.print("title: ");
             tmp.title = scanner.nextLine();
-            System.out.print("날짜: ");
+            System.out.print("date: ");
             tmp.date = scanner.nextLine();
-            System.out.print("위치: ");
+            System.out.print("location: ");
             tmp.location = scanner.nextLine();
-            System.out.print("사람: ");
+            System.out.print("perosn: ");
             tmp.person = scanner.nextLine();
             
 
             appt_vector.add(tmp);
             Appointment_write();
-            System.out.println("성공적으로 생성되었습니다.");
+            System.out.println("Successfully create");
     }
 
     private static void Appointment_view(){
@@ -125,10 +125,10 @@ public class Appointment {
     	Appointment_print();
 
        
-        System.out.print("자세히 보고 싶은 약속의 번호를 입력해주세요: ");
+        System.out.print("enter the number of list to see detail: ");
         int tmp = Integer.parseInt(scanner.nextLine()); //사용자의 선택
         System.out.println("====================================================");
-        System.out.println(String.format("%3s","번호")+String.format("%10s","제목")+String.format("%20s","날짜")+String.format("%27s","위치")+String.format("%30s", "사람"));
+        System.out.println(String.format("%3s","num")+String.format("%10s","title")+String.format("%20s","date")+String.format("%27s","location")+String.format("%30s", "person"));
         System.out.println("====================================================");
         System.out.println(String.format("%3s","["+tmp+"]")
         		+String.format("%6s",appt_vector.elementAt(tmp-1).title)
@@ -142,10 +142,10 @@ public class Appointment {
     	Appointment_print();
 
        
-        System.out.print("수정할 약속의 번호를 입력하세요: ");
+        System.out.print("enter the number of list to update: ");
         int choice = scanner.nextInt(); 
         System.out.println("====================================================");
-        System.out.println(String.format("%3s","번호")+String.format("%10s","제목")+String.format("%20s","날짜")+String.format("%27s","위치")+String.format("%30s", "사람"));
+        System.out.println(String.format("%3s","num")+String.format("%10s","title")+String.format("%20s","date")+String.format("%27s","location")+String.format("%30s", "person"));
         System.out.println("====================================================");
         System.out.println(String.format("%3s","["+choice+"]")
         		+String.format("%6s",appt_vector.elementAt(choice-1).title)
@@ -157,19 +157,19 @@ public class Appointment {
         
         Appointment_Info tmp = appt_vector.elementAt(choice-1);
         
-        System.out.println("수정 할 연락처의 세부 데이터를 입력 해 주세요.");
-        System.out.print("제목: ");
+        System.out.println("Enter the detail data of appointment to update");
+        System.out.print("title: ");
         tmp.title = scanner.nextLine();
-        System.out.print("날짜: ");
+        System.out.print("date: ");
         tmp.date = scanner.nextLine();
-        System.out.print("위치: ");
+        System.out.print("location: ");
         tmp.location = scanner.nextLine();
-        System.out.print("사람: ");
+        System.out.print("person: ");
         tmp.person = scanner.nextLine();
 
 
         Appointment_write();
-        System.out.println("성공적으로 수정되었습니다.");
+        System.out.println("Successfully update");
 
     }
 
@@ -187,7 +187,7 @@ public class Appointment {
     }
     private static void Appointment_print() {
         System.out.println("=================================");
-        System.out.println(String.format("%3s","번호")+String.format("%10s","제목")+String.format("%10s", "날짜"));
+        System.out.println(String.format("%3s","num")+String.format("%10s","title")+String.format("%10s", "date"));
         System.out.println("=================================");
         for(int i=0;i<appt_vector.size();i++){
             System.out.println(String.format("%3s","["+(i+1)+"]")+String.format("%6s",appt_vector.elementAt(i).title)+String.format("%10s",appt_vector.elementAt(i).date));

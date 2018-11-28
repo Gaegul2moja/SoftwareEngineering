@@ -42,7 +42,7 @@ public class Todo {
                 case 5:
                     break;
                 default:
-                    System.out.println("잘못된 입력 값 입니다.");
+                    System.out.println("wrong input");
             }
         }while(choice!=5);
     }
@@ -62,48 +62,43 @@ public class Todo {
                 int loc3 = line.substring(loc2+1, line.length()).indexOf('%')+loc2+1;
                 Todolists_Info tmp = new Todolists_Info(line.substring(0,loc1),line.substring(loc1+1,loc2),line.substring(loc2+1,loc3),line.substring(loc3+1, line.length()));
                 todo_vector.add(tmp);
-                //System.out.println(con_vector.elementAt(0).name+" "+con_vector.elementAt(0).phone+" "+con_vector.elementAt(0).email);
             }
             fileReader.close();
             bufferedReader.close();
         }catch(FileNotFoundException e){System.out.println("ERROR1");}catch(IOException e){System.out.println("ERROR2");}
-        //전체 리스트 읽음
 
-       // Scanner scanner = new Scanner(System.in);
-        System.out.println("<<할 일 관리 메뉴>>");
+        System.out.println("<<Todo Management Menu>>");
         System.out.println("1. CREATE");
         System.out.println("2. VIEW");
         System.out.println("3. UPDATE");
         System.out.println("4. DELETE");
         System.out.println("5. EXIT");
-        System.out.print("입력: ");
+        System.out.print("Input: ");
         String tmp = scanner.nextLine();
         choice = Integer.parseInt(tmp);
-      //  scanner.close();
     }
     private static void Todolist_delete() {
 
         Todolist_print();
-       // Scanner scanner = new Scanner(System.in);
-        System.out.print("삭제할 연락처의 번호를 입력하세요: ");
+        System.out.print("Please enter the number of the list to delete: ");
         int choice = scanner.nextInt();
         scanner.nextLine();
-        System.out.println("====================================================");
-        System.out.println(String.format("%3s","번호")+String.format("%20s","할 일 제목")+String.format("%20s","생성 날짜")+String.format("%20s","마감 기한")+String.format("%40s","내용"));
-        System.out.println("====================================================");
-        System.out.println(String.format("%3s","["+choice+"]")+String.format("%20s", todo_vector.elementAt(choice-1).title)+String.format("%20s",todo_vector.elementAt(choice-1).createDate)+String.format("%20s",todo_vector.elementAt(choice-1).dueDate)+String.format("%40s",todo_vector.elementAt(choice-1).description));
+        System.out.println("===================================================================================");
+        System.out.println(String.format("%-10s","number")+String.format("%-15s","Title")+String.format("%-20s","Creation Date")+String.format("%-20s","Due Date")+String.format("%-40s","Discription"));
+        System.out.println("===================================================================================");
+        System.out.println(String.format("%-10s","["+choice+"]")+String.format("%-20s", todo_vector.elementAt(choice-1).title)+String.format("%-20s",todo_vector.elementAt(choice-1).createDate)+String.format("%-20s",todo_vector.elementAt(choice-1).dueDate)+String.format("%-40s",todo_vector.elementAt(choice-1).description));
 
-        System.out.print("정말로 삭제하시겠습니까?(y/n): ");
+        System.out.print("Do you really want to delete your list? (y/n): ");
         String delete_choice = scanner.nextLine();
         if(delete_choice.equals("y")) {
             todo_vector.remove(choice-1);
-            System.out.println("성공적으로 삭제되었습니다");
+            System.out.println("Deleted successfully!");
         }
         else if(delete_choice.equals("n")) {
-            System.out.println("삭제 작업을 취소하였습니다.");
+            System.out.println("Deletion canceled");
         }
         else {
-            System.out.println("잘못된 입력값 입니다.");
+            System.out.println("Wrong input");
         }
         Todolist_write();
 
@@ -116,11 +111,11 @@ public class Todo {
        int date = cal.get(cal.DATE);
        
         Todolists_Info tmp = new Todolists_Info("","","","");
-        System.out.print("제목을 쓰시오: ");
+        System.out.print("Todo title: ");
         tmp.title = scanner.nextLine();
-        System.out.print("마감 기한을 입력해주세요(xxxx/xx/xx): ");
+        System.out.print("Due date(xxxx/xx/xx): ");
         tmp.dueDate = scanner.nextLine();
-        System.out.print("내용: ");
+        System.out.print("Description: ");
         tmp.description = scanner.nextLine();
         tmp.createDate = year+"/"+month+"/"+date;
         
@@ -128,51 +123,46 @@ public class Todo {
             
 
         Todolist_write();
-        System.out.println("성공적으로 생성되었습니다.");
+        System.out.println("Successfully created!");
     }
 
     private static void Todolist_view(){
 
         Todolist_print();
 
-        //Scanner scanner = new Scanner(System.in);
-        System.out.print("자세히 보고 싶은 연락처의 번호를 입력해주세요: ");
-        int tmp = Integer.parseInt(scanner.nextLine()); //사용자의 선택
-        System.out.println("====================================================");
-        System.out.println(String.format("%3s","번호")+String.format("%10s","할 일 제목")+String.format("%20s","생성 날짜")+String.format("%20s","마감 기한")+String.format("%40s", "내용"));
-        System.out.println("====================================================");
-        System.out.println(String.format("%3s","["+tmp+"]")+String.format("%10s",todo_vector.elementAt(tmp-1).title)+String.format("%20s",todo_vector.elementAt(tmp-1).createDate)+String.format("%20s",todo_vector.elementAt(tmp-1).dueDate)+String.format("%40s", todo_vector.elementAt(tmp-1).description));
-        //선택한 리스트의 자세한 데이터 출력
-       // scanner.close();
+        System.out.print("Enter the number of the list you want to view: ");
+        int tmp = Integer.parseInt(scanner.nextLine());
+        System.out.println("===================================================================================");
+        System.out.println(String.format("%-10s","number")+String.format("%-15s","Title")+String.format("%-20s","Creation Date")+String.format("%-20s","Due Date")+String.format("%-40s","Discription"));
+        System.out.println("===================================================================================");
+        System.out.println(String.format("%-10s","["+tmp+"]")+String.format("%-20s",todo_vector.elementAt(tmp-1).title)+String.format("%-20s",todo_vector.elementAt(tmp-1).createDate)+String.format("%-20s",todo_vector.elementAt(tmp-1).dueDate)+String.format("%-40s", todo_vector.elementAt(tmp-1).description));
     }
 
     private static void Todolist_update() {
 
         Todolist_print();
 
-       // Scanner scanner = new Scanner(System.in);
-        System.out.print("수정할 할 일의 번호를 입력하세요: ");
-        int choice = scanner.nextInt(); //사용자의 선택
-        System.out.println("====================================================");
-        System.out.println(String.format("%3s","번호")+String.format("%10s","할 일 제목")+String.format("%20s","생성 날짜")+String.format("%20s","마감 기한")+String.format("%40s","내용"));
-        System.out.println("====================================================");
-        System.out.println(String.format("%3s","["+choice+"]")+String.format("%20s", todo_vector.elementAt(choice-1).title)+String.format("%10s",todo_vector.elementAt(choice-1).createDate)+String.format("%20s",todo_vector.elementAt(choice-1).dueDate)+String.format("%40s",todo_vector.elementAt(choice-1).description));
+        System.out.print("Enter the number of list you want to update: ");
+        int choice = scanner.nextInt();
+        System.out.println("===================================================================================");
+        System.out.println(String.format("%-10s","number")+String.format("%-15s","Title")+String.format("%-20s","Creation Date")+String.format("%-20s","Due Date")+String.format("%-40s","Discription"));
+        System.out.println("===================================================================================");
+        System.out.println(String.format("%-10s","["+choice+"]")+String.format("%-20s", todo_vector.elementAt(choice-1).title)+String.format("%-20s",todo_vector.elementAt(choice-1).createDate)+String.format("%-20s",todo_vector.elementAt(choice-1).dueDate)+String.format("%-40s",todo_vector.elementAt(choice-1).description));
 
         scanner.nextLine();
         
         Todolists_Info tmp = todo_vector.elementAt(choice-1);
         
-        System.out.println("수정할 할 일의 세부 데이터를 입력 해 주세요.");
-        System.out.print("제목: ");
+        System.out.println("The input for the update data");
+        System.out.print("Title: ");
         tmp.title = scanner.nextLine();
-        System.out.print("마감 기한: ");
+        System.out.print("Due Date: ");
         tmp.dueDate = scanner.nextLine();
-        System.out.print("내용: ");
+        System.out.print("Description: ");
         tmp.description = scanner.nextLine();
-      //  scanner.close();
 
         Todolist_write();
-        System.out.println("성공적으로 수정되었습니다.");
+        System.out.println("Successfully updated");
     }
 
 
@@ -189,14 +179,13 @@ public class Todo {
     }
     private static void Todolist_print() {
         System.out.println("=================================");
-        System.out.println(String.format("%3s","번호")+String.format("%10s","제목"));
+        System.out.println(String.format("%-10s","number")+String.format("%-10s","Title"));
         System.out.println("=================================");
-       // System.out.println(con_vector.elementAt(1).name);
+
         for(int i=0;i<todo_vector.size();i++){
-            System.out.println(String.format("%3s","["+(i+1)+"]")+String.format("%10s",todo_vector.elementAt(i).title));
+            System.out.println(String.format("%-10s","["+(i+1)+"]")+String.format("%-20s",todo_vector.elementAt(i).title));
         }
         System.out.println("=================================");
-        //간략한 전체 리스트 출력
     }
 }
 

@@ -49,6 +49,9 @@ public class Todo {
     private static void Todolist_menu(){
         try {
             File file = new File(Todolists);
+            if(!file.exists()) {
+            	file.createNewFile();
+            }
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             String line = "";
@@ -57,7 +60,7 @@ public class Todo {
                 int loc1 = line.indexOf('%');
                 int loc2 = line.substring(loc1+1,line.length()).indexOf('%')+loc1+1;
                 int loc3 = line.substring(loc2+1, line.length()).indexOf('%')+loc2+1;
-                Todolists_Info tmp = new Todolists_Info(line.substring(0,loc1),line.substring(loc1+1,loc2),line.substring(loc2+1,loc3),line.substring(loc3, line.length()));
+                Todolists_Info tmp = new Todolists_Info(line.substring(0,loc1),line.substring(loc1+1,loc2),line.substring(loc2+1,loc3),line.substring(loc3+1, line.length()));
                 todo_vector.add(tmp);
                 //System.out.println(con_vector.elementAt(0).name+" "+con_vector.elementAt(0).phone+" "+con_vector.elementAt(0).email);
             }

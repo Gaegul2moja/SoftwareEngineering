@@ -15,8 +15,8 @@ import java.util.Vector;
  * Created by HOME on 2018-11-07.
  */
 public class Todo {
-	
-	static Vector<Todolists_Info> todo_vector;
+   
+   static Vector<Todolists_Info> todo_vector;
     public static final String Todolists = "Todolists.txt";
     static int choice;
     static Scanner scanner = new Scanner(System.in);
@@ -110,11 +110,11 @@ public class Todo {
     }
 
     private static void Todolist_create(){
-    	Calendar cal = Calendar.getInstance();
-    	int year = cal.get(cal.YEAR);
-    	int month = cal.get(cal.MONTH)+1;
-    	int date = cal.get(cal.DATE);
-    	
+       Calendar cal = Calendar.getInstance();
+       int year = cal.get(cal.YEAR);
+       int month = cal.get(cal.MONTH)+1;
+       int date = cal.get(cal.DATE);
+       
         Todolists_Info tmp = new Todolists_Info("","","","");
         System.out.print("제목을 쓰시오: ");
         tmp.title = scanner.nextLine();
@@ -203,11 +203,10 @@ public class Todo {
 class Todolists_Info {
     String  title, createDate, dueDate, description;
     Todolists_Info(String title, String createDate, String dueDate, String description) {
-    	this.title = title;
+       this.title = title;
         this.createDate = createDate;
         this.dueDate = dueDate;
         this.description = description;
     }
-	
+   
 }
-

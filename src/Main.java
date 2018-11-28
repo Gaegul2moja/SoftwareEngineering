@@ -14,13 +14,12 @@ public class Main {
 				Contacts.main();
 				break;
 			case 2:
-				//Todo.main();
+				Todo.main();
 				break;
 			case 3:
 				Appointment.main();
 				break;
 			case 4:
-				scanner.close();
 				break;
 			default:
                 System.out.println("잘못된 입력 값 입니다.");

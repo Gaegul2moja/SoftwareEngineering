@@ -50,7 +50,7 @@ public class Todo {
         try {
             File file = new File(Todolists);
             if(!file.exists()) {
-               file.createNewFile();
+            	file.createNewFile();
             }
             FileReader fileReader = new FileReader(file);
             BufferedReader bufferedReader = new BufferedReader(fileReader);

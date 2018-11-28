@@ -190,7 +190,7 @@ public class Appointment {
         System.out.println(String.format("%3s","번호")+String.format("%10s","제목")+String.format("%10s", "날짜"));
         System.out.println("=================================");
         for(int i=0;i<appt_vector.size();i++){
-            System.out.println(String.format("%3s","["+(i+1)+"]")+String.format("%10s",appt_vector.elementAt(i).title)+String.format("%10s",appt_vector.elementAt(i).date));
+            System.out.println(String.format("%3s","["+(i+1)+"]")+String.format("%6s",appt_vector.elementAt(i).title)+String.format("%10s",appt_vector.elementAt(i).date));
         }
         System.out.println("=================================");
     }

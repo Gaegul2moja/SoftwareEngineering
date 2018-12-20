@@ -26,17 +26,23 @@ public class Todo {
 
         do {
             Todolist_menu();
+            Print_menu();
             switch (choice) {
                 case 1:
                     Todolist_create();
                     break;
                 case 2:
-                    Todolist_view();
+                	Todolist_print();
+
+                    System.out.print("Enter the number of the list you want to view: ");
+                    int tmp = Integer.parseInt(scanner.nextLine());
+                    Todolist_view(tmp,todo_vector);
                     break;
                 case 3:
                     Todolist_update();
                     break;
                 case 4:
+                	
                     Todolist_delete();
                     break;
                 case 5:
@@ -46,6 +52,17 @@ public class Todo {
             }
         }while(choice!=5);
     }
+    public static void Print_menu(){
+    	 System.out.println("<<Todo Management Menu>>");
+         System.out.println("1. CREATE");
+         System.out.println("2. VIEW");
+         System.out.println("3. UPDATE");
+         System.out.println("4. DELETE");
+         System.out.println("5. EXIT");
+         System.out.print("Input: ");
+         String tmp = scanner.nextLine();
+         choice = Integer.parseInt(tmp);
+  }
     private static void Todolist_menu(){
         try {
             File file = new File(Todolists);
@@ -67,15 +84,7 @@ public class Todo {
             bufferedReader.close();
         }catch(FileNotFoundException e){System.out.println("ERROR1");}catch(IOException e){System.out.println("ERROR2");}
 
-        System.out.println("<<Todo Management Menu>>");
-        System.out.println("1. CREATE");
-        System.out.println("2. VIEW");
-        System.out.println("3. UPDATE");
-        System.out.println("4. DELETE");
-        System.out.println("5. EXIT");
-        System.out.print("Input: ");
-        String tmp = scanner.nextLine();
-        choice = Integer.parseInt(tmp);
+       
     }
     private static void Todolist_delete() {
 
@@ -126,16 +135,19 @@ public class Todo {
         System.out.println("Successfully created!");
     }
 
-    private static void Todolist_view(){
-
-        Todolist_print();
-
-        System.out.print("Enter the number of the list you want to view: ");
-        int tmp = Integer.parseInt(scanner.nextLine());
+    public static String Todolist_view(int tmp, Vector<Todolists_Info> todo_vector){
+    	String bindAnswer = String.format("%-10s","["+tmp+"]")
+        		+String.format("%-20s",todo_vector.elementAt(tmp-1).title)
+        		+String.format("%-20s",todo_vector.elementAt(tmp-1).createDate)
+        		+String.format("%-20s",todo_vector.elementAt(tmp-1).dueDate)
+        		+String.format("%-40s", todo_vector.elementAt(tmp-1).description);
+        
         System.out.println("===================================================================================");
         System.out.println(String.format("%-10s","number")+String.format("%-15s","Title")+String.format("%-20s","Creation Date")+String.format("%-20s","Due Date")+String.format("%-40s","Discription"));
         System.out.println("===================================================================================");
-        System.out.println(String.format("%-10s","["+tmp+"]")+String.format("%-20s",todo_vector.elementAt(tmp-1).title)+String.format("%-20s",todo_vector.elementAt(tmp-1).createDate)+String.format("%-20s",todo_vector.elementAt(tmp-1).dueDate)+String.format("%-40s", todo_vector.elementAt(tmp-1).description));
+        System.out.println(bindAnswer);
+        
+        return bindAnswer;
     }
 
     private static void Todolist_update() {
